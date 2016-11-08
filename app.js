@@ -13,6 +13,9 @@ app.engine('html', nunjucks.render); // when giving html files to res.render, te
 
 app.use('/', routes);
 
+app.use(express.static('public'));
+
+
 app.use(volleyball);
 //
 // app.use('/special', (req, res, next) => {
