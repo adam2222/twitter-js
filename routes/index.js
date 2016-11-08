@@ -12,11 +12,26 @@ router.get('/', function (req, res) {
   res.render( 'index', { tweets: tweets } );
 });
 
-// router.get('/style', function (req, res) {
-//   res.sendFile(path.join(__dirname, '..', 'public', 'stylesheets', 'style.css'));
-// })
+router.get('/users/:name', function(req, res) {
+  var name = req.params.name;
+  var tweetList = tweetBank.find( {name: name} );
+
+  // console.log(tweetBank.list( ))
+  res.render( 'index', { tweets: tweetList } );
+});
+
+router.get('/tweets/:id', function(req, res) {
+	var id = Number(req.params.id);
+	var tweet = tweetBank.find( {id: id});
+	// console.log(tweetBank.list())
+	// console.log(tweet)
+	console.log(id)
+	res.render( 'index', { tweets: tweet});
+})
+
 
 router.use(express.static('../public'))
 
 
 module.exports = router;
+
